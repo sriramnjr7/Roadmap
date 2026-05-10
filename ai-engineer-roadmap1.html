@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Engineer Roadmap 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--surface:#161b22;--surface2:#1c2128;
+  --border:#21262d;--border2:#30363d;
+  --text:#e6edf3;--muted:#8b949e;--hint:#484f58;
+  --green:#3fb950;--green-bg:#0d2119;--green-bd:#1a4a30;
+  --amber:#d29922;--amber-bg:#271d0d;--amber-bd:#4d3a1a;
+  --blue:#58a6ff;--blue-bg:#0d1f38;--blue-bd:#1a3a6e;
+  --purple:#bc8cff;--purple-bg:#1a0f2e;--purple-bd:#3d2475;
+  --font:'DM Sans',sans-serif;--mono:'JetBrains Mono',monospace;
+  --r:8px;--rl:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+
+/* Sidebar */
+aside{background:var(--surface);border-right:1px solid var(--border);padding:24px 18px;display:flex;flex-direction:column;gap:22px;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo-title{font-size:13px;font-weight:600;letter-spacing:.01em}
+.logo-sub{font-size:11px;color:var(--muted);font-family:var(--mono);margin-top:2px}
+.ring-wrap{display:flex;flex-direction:column;align-items:center}
+.ring-track{fill:none;stroke:var(--border2);stroke-width:5}
+.ring-fill{fill:none;stroke:var(--green);stroke-width:5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
+.ring-pct{font-family:var(--mono);font-size:18px;font-weight:500;fill:var(--text);text-anchor:middle;dominant-baseline:middle}
+.ring-lbl{font-family:var(--font);font-size:10px;fill:var(--muted);text-anchor:middle;dominant-baseline:middle}
+.s-stats{display:flex;flex-direction:column;gap:6px}
+.s-stat{display:flex;justify-content:space-between;align-items:center;padding:8px 11px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border)}
+.s-stat-label{font-size:12px;color:var(--muted)}
+.s-stat-val{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text)}
+.sb-title{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint);margin-bottom:8px}
+.practice-item+.practice-item{margin-top:10px}
+.practice-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.practice-name{font-size:12px;font-weight:500}
+.practice-freq{font-size:10px;color:var(--muted);font-family:var(--mono)}
+.week-dots{display:flex;gap:3px}
+.dot{width:26px;height:26px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:9px;font-family:var(--mono);color:var(--hint);cursor:pointer;transition:all .15s;user-select:none}
+.dot:hover{background:var(--surface2)}
+.dot.today{border-color:var(--blue);color:var(--blue)}
+.dot.done{background:var(--green-bg);border-color:var(--green-bd);color:var(--green);font-size:11px}
+.hours-block{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:12px}
+.hours-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.hours-label{font-size:12px;color:var(--muted)}
+.hours-num{font-family:var(--mono);font-size:20px;font-weight:500}
+.hours-sub{font-size:10px;color:var(--hint);font-family:var(--mono);margin-bottom:8px}
+.hours-bar-wrap{height:4px;background:var(--border2);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.hours-bar-fill{height:100%;background:var(--amber);border-radius:99px;transition:width .3s ease}
+.h-btns{display:flex;gap:5px}
+.h-btn{flex:1;padding:5px 0;border:1px solid var(--border2);border-radius:var(--r);background:transparent;color:var(--muted);font-size:13px;cursor:pointer;transition:all .15s;font-family:var(--mono)}
+.h-btn:hover{background:var(--surface);color:var(--text)}
+.reset-btn{margin-top:auto;padding:7px 12px;border:1px solid var(--border2);border-radius:var(--r);background:transparent;color:var(--hint);font-size:11px;cursor:pointer;text-align:center;transition:all .15s;font-family:var(--font)}
+.reset-btn:hover{border-color:#5c1d1d;color:#f78166;background:#1a0a0a}
+
+/* Main */
+main{padding:28px 28px 60px;overflow-y:auto}
+.main-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.main-title{font-size:20px;font-weight:600;margin-bottom:4px}
+.main-sub{font-size:13px;color:var(--muted)}
+.role-chips{display:flex;gap:6px;flex-wrap:wrap}
+.role-chip{font-size:11px;padding:3px 10px;border-radius:99px;border:1px solid var(--blue-bd);background:var(--blue-bg);color:var(--blue);font-family:var(--mono)}
+.section{margin-bottom:32px}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.section-title{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--hint)}
+.legend{display:flex;gap:14px}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--hint)}
+.ld{width:8px;height:8px;border-radius:50%}
+.ld.ns{background:var(--hint)}.ld.ip{background:var(--amber)}.ld.co{background:var(--green)}
+
+/* Phase grid */
+.phases-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.phase-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;transition:border-color .15s}
+.phase-card:hover{border-color:var(--border2)}
+.phase-card.in-progress{border-color:var(--amber-bd)}
+.phase-card.complete{border-color:var(--green-bd)}
+.phase-head{padding:14px 14px 12px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.phase-left{flex:1;min-width:0}
+.phase-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.phase-num{font-family:var(--mono);font-size:10px;color:var(--hint);margin-bottom:3px}
+.phase-name{font-size:13px;font-weight:500;color:var(--text);line-height:1.3;margin-bottom:4px;transition:color .1s}
+.phase-head:hover .phase-name{color:#a5c8ff}
+.phase-dur{font-size:11px;color:var(--muted)}
+.phase-badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:99px;font-family:var(--mono);cursor:pointer;user-select:none;white-space:nowrap;transition:opacity .15s}
+.not-started .phase-badge{background:var(--surface2);color:var(--hint);border:1px solid var(--border2)}
+.in-progress .phase-badge{background:rgba(210,153,34,.15);color:var(--amber);border:1px solid var(--amber-bd)}
+.complete .phase-badge{background:rgba(63,185,80,.15);color:var(--green);border:1px solid var(--green-bd)}
+.phase-badge:hover{opacity:.7}
+.chevron{font-size:11px;color:var(--hint);transition:transform .2s;line-height:1;margin-top:2px}
+.phase-card.open .chevron{transform:rotate(180deg)}
+.phase-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.phase-card.open .phase-body{display:block}
+.phase-goal{font-size:12px;color:var(--muted);line-height:1.65;padding:12px 0 12px;border-bottom:1px solid var(--border)}
+.detail-block{margin-top:12px}
+.detail-label{font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--hint);margin-bottom:7px}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:5px}
+.skill-chip{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd);font-family:var(--mono)}
+.deliverables{display:flex;flex-direction:column;gap:5px}
+.del-item{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--muted);line-height:1.4}
+.del-item::before{content:'→';color:var(--green);font-family:var(--mono);font-size:11px;flex-shrink:0;margin-top:1px}
+.res-links{display:flex;flex-direction:column}
+.res-link{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--blue);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border);transition:color .1s}
+.res-link:last-child{border-bottom:none}
+.res-link:hover{color:#a5c8ff}
+.res-link-name{flex:1}
+.res-link-tag{font-size:10px;color:var(--hint);font-family:var(--mono);flex-shrink:0}
+.phase-notes{width:100%;margin-top:12px;padding:8px 10px;font-size:12px;font-family:var(--font);color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);outline:none;resize:vertical;line-height:1.5;min-height:52px}
+.phase-notes::placeholder{color:var(--hint)}
+.phase-notes:focus{border-color:var(--border2);color:var(--text)}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px}
+::-webkit-scrollbar-thumb:hover{background:var(--hint)}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+  <div>
+    <div class="logo-title">AI Engineer Roadmap</div>
+    <div class="logo-sub">2026 Edition · 18–24 months</div>
+  </div>
+  <div class="ring-wrap">
+    <svg width="100" height="100" viewBox="0 0 100 100">
+      <circle class="ring-track" cx="50" cy="50" r="42"/>
+      <circle class="ring-fill" id="ring-fill" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="263.9"/>
+      <text x="50" y="46"><tspan class="ring-pct" id="ring-pct">0%</tspan></text>
+      <text x="50" y="60"><tspan class="ring-lbl">complete</tspan></text>
+    </svg>
+  </div>
+  <div class="s-stats">
+    <div class="s-stat"><span class="s-stat-label">Phases done</span><span class="s-stat-val" id="s-done">0 / 19</span></div>
+    <div class="s-stat"><span class="s-stat-label">In progress</span><span class="s-stat-val" id="s-prog">0</span></div>
+    <div class="s-stat"><span class="s-stat-label">This week</span><span class="s-stat-val" id="s-hrs">0h</span></div>
+    <div class="s-stat"><span class="s-stat-label">Timeline</span><span class="s-stat-val">18–24 mo</span></div>
+  </div>
+  <div>
+    <div class="sb-title">Daily practice</div>
+    <div class="practice-item">
+      <div class="practice-header"><span class="practice-name">Python</span><span class="practice-freq">20–30 min/day</span></div>
+      <div class="week-dots" id="py-dots"></div>
+    </div>
+    <div class="practice-item">
+      <div class="practice-header"><span class="practice-name">SQL</span><span class="practice-freq">3–4× / week</span></div>
+      <div class="week-dots" id="sql-dots"></div>
+    </div>
+  </div>
+  <div>
+    <div class="sb-title">Weekly hours</div>
+    <div class="hours-block">
+      <div class="hours-top"><span class="hours-label">Logged this week</span><span class="hours-num" id="hrs-num">0h</span></div>
+      <div class="hours-sub" id="hrs-sub">Target 9–11h · 9h remaining</div>
+      <div class="hours-bar-wrap"><div class="hours-bar-fill" id="hrs-bar" style="width:0%"></div></div>
+      <div class="h-btns">
+        <button class="h-btn" onclick="chHrs(-1)">−1h</button>
+        <button class="h-btn" onclick="chHrs(.5)">+½h</button>
+        <button class="h-btn" onclick="chHrs(1)">+1h</button>
+      </div>
+    </div>
+  </div>
+  <button class="reset-btn" onclick="confirmReset()">↺ Reset all progress</button>
+</aside>
+
+<main>
+  <div class="main-header">
+    <div>
+      <div class="main-title">AI Engineer Career Roadmap</div>
+      <div class="main-sub">One-stop tracker · expand any phase for resources, skills &amp; deliverables · click badge to update status</div>
+    </div>
+    <div class="role-chips">
+      <span class="role-chip">AI Engineer</span>
+      <span class="role-chip">GenAI Engineer</span>
+      <span class="role-chip">ML Engineer</span>
+      <span class="role-chip">Enterprise AI</span>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-title">19 Phases</span>
+      <div class="legend">
+        <div class="legend-item"><div class="ld ns"></div>Not started</div>
+        <div class="legend-item"><div class="ld ip"></div>In progress</div>
+        <div class="legend-item"><div class="ld co"></div>Complete</div>
+      </div>
+    </div>
+    <div class="phases-grid" id="phases-grid"></div>
+  </div>
+</main>
+</div>
+
+<script>
+const PHASES=[
+  {id:1,name:'Engineering Habit System',dur:'2–3 weeks',
+   goal:'Build a sustainable execution system before touching any technical content. Consistency beats intensity — this phase creates the container everything else lives in.',
+   skills:['Time blocking','Deep work sessions','Spaced repetition','Knowledge management','Weekly review','Study tracking'],
+   deliverables:['Notion study dashboard','Phase-by-phase tracker','Weekly review template','Daily time blocks established'],
+   resources:[
+     {name:'Atomic Habits — James Clear',tag:'Book',url:'https://jamesclear.com/atomic-habits'},
+     {name:'Learning How to Learn — Coursera',tag:'Free course',url:'https://www.coursera.org/learn/learning-how-to-learn'},
+   ]},
+  {id:2,name:'Python Foundations',dur:'2–3 months',
+   goal:'Build strong, clean Python fundamentals you can actually use. Focus on writing readable, correct code before moving to complex abstractions.',
+   skills:['Variables & types','Functions & scope','Loops & conditionals','Exception handling','File I/O','Regex basics','CLI scripting','Modules & packages'],
+   deliverables:['Financial CSV cleaner CLI tool','Transaction validator script','JSON export utility','GitHub repo with README & unit tests'],
+   resources:[
+     {name:'CS50P — Harvard',tag:'Free course (primary)',url:'https://cs50.harvard.edu/python/2022/'},
+     {name:'Complete Python Developer — Andrei Neagoie',tag:'ZTM course',url:'https://zerotomastery.io/courses/learn-python/'},
+     {name:'LeetCode Python',tag:'Daily practice',url:'https://leetcode.com/problemset/all/'},
+     {name:'HackerRank Python',tag:'Daily practice',url:'https://www.hackerrank.com/domains/python'},
+     {name:'Codewars',tag:'Daily practice',url:'https://www.codewars.com/'},
+     {name:'Exercism Python track',tag:'Daily practice',url:'https://exercism.org/tracks/python'},
+   ]},
+  {id:3,name:'Python Engineering',dur:'4–5 months',
+   goal:'Transition from scripting to engineering-grade Python. Understand the language deeply — memory model, data model, and how Python actually executes your code.',
+   skills:['Closures & decorators','Iterators & generators','Lazy evaluation','OOP & descriptors','Properties & __slots__','Functional programming','Memory model','Modular architecture'],
+   deliverables:['Streaming financial processing engine','Lazy-loading parser','Validation descriptors','Decorator-based logging','Profiling benchmarks','Full test suite'],
+   resources:[
+     {name:'Python 3 Deep Dive Part 1 — Fred Baptiste',tag:'Udemy',url:'https://www.udemy.com/course/python-3-deep-dive-part-1/'},
+     {name:'Python 3 Deep Dive Part 2 — Fred Baptiste',tag:'Udemy',url:'https://www.udemy.com/course/python-3-deep-dive-part-2/'},
+     {name:'Python 3 Deep Dive Part 4 — Fred Baptiste',tag:'Udemy',url:'https://www.udemy.com/course/python-3-deep-dive-part-4/'},
+     {name:'Fluent Python — Luciano Ramalho',tag:"O'Reilly book",url:'https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/'},
+   ]},
+  {id:4,name:'Git & Testing',dur:'1 month',
+   goal:"Develop a professional engineering workflow. Code that isn't version-controlled and tested doesn't exist in a professional context.",
+   skills:['Git branching strategy','Rebasing & squashing','Pull requests & reviews','Unit testing with pytest','Mocking & fixtures','Coverage reporting','CI-ready structure'],
+   deliverables:['Refactored prior project into production-style repo','Comprehensive pytest suite','Structured branch workflow','Coverage reports'],
+   resources:[
+     {name:'Git & GitHub — Andrei Neagoie',tag:'ZTM course',url:'https://zerotomastery.io/courses/learn-git-and-github/'},
+     {name:'Python Testing with pytest — Brian Okken',tag:'Book',url:'https://www.oreilly.com/library/view/python-testing-with/9781680509427/'},
+   ]},
+  {id:5,name:'Backend Engineering',dur:'1–1.5 months',
+   goal:'Understand how backend runtime systems and async architecture work. The foundation for everything API-related that follows.',
+   skills:['Async/await patterns','Event loop mechanics','HTTP lifecycle','Middleware design','Error handling strategy','API architecture principles'],
+   deliverables:['Async Banking Ledger API','Structured routing system','Error middleware layer','Async endpoint suite'],
+   resources:[
+     {name:'FastAPI Documentation',tag:'Official docs',url:'https://fastapi.tiangolo.com/'},
+     {name:'ArjanCodes — Python architecture',tag:'YouTube',url:'https://www.youtube.com/@ArjanCodes'},
+   ]},
+  {id:6,name:'APIs & FastAPI',dur:'1–1.5 months',
+   goal:'Build production-grade APIs with authentication, database integration, and proper schema validation — the kind deployed at real companies.',
+   skills:['FastAPI advanced patterns','Pydantic v2 schemas','JWT authentication','SQLAlchemy ORM','Alembic migrations','Dependency injection','PostgreSQL integration'],
+   deliverables:['Portfolio Management API','JWT auth system','PostgreSQL schema','Alembic migration suite','Typed request/response schemas'],
+   resources:[
+     {name:'FastAPI Advanced User Guide',tag:'Official docs',url:'https://fastapi.tiangolo.com/advanced/'},
+     {name:'SQLAlchemy Documentation',tag:'Official docs',url:'https://docs.sqlalchemy.org/'},
+     {name:'Alembic Documentation',tag:'Official docs',url:'https://alembic.sqlalchemy.org/'},
+     {name:'PostgreSQL Documentation',tag:'Official docs',url:'https://www.postgresql.org/docs/'},
+   ]},
+  {id:7,name:'Docker & Deployment',dur:'3–4 weeks',
+   goal:"Containerize applications so they run identically in every environment. Docker is table stakes for any modern engineering role.",
+   skills:['Dockerfile best practices','Multi-stage builds','Docker Compose orchestration','Container networking','Volume management','Container security basics'],
+   deliverables:['Dockerized FastAPI stack','Docker Compose config','Multi-stage production Dockerfile','Local deployment workflow'],
+   resources:[
+     {name:'Docker Documentation',tag:'Official docs',url:'https://docs.docker.com/'},
+     {name:'Docker Deep Dive — Nigel Poulton',tag:'Book',url:'https://www.amazon.com/Docker-Deep-Dive-Nigel-Poulton/dp/1916585256'},
+   ]},
+  {id:8,name:'SQL & Data Engineering',dur:'2 months',
+   goal:"Master analytical SQL and enterprise database concepts. SQL is unavoidable in finance-domain AI — your queries need to be fast and correct.",
+   skills:['Complex JOINs & subqueries','Window functions','CTEs & recursive queries','Query optimization','Execution plan analysis','Indexing strategies','Schema design','Transactions & ACID'],
+   deliverables:['Financial ledger database system','Optimized indexed schema','Analytical reporting queries','Query performance benchmarks'],
+   resources:[
+     {name:'100 Days of SQL — Ankit Bansal',tag:'Udemy',url:'https://www.udemy.com/course/100-days-of-sql/'},
+     {name:'Designing Data-Intensive Applications — Kleppmann',tag:"O'Reilly book",url:'https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/'},
+     {name:'DataLemur — SQL problems',tag:'Practice',url:'https://datalemur.com/'},
+     {name:'LeetCode SQL',tag:'Practice',url:'https://leetcode.com/problemset/database/'},
+     {name:'HackerRank SQL',tag:'Practice',url:'https://www.hackerrank.com/domains/sql'},
+   ]},
+  {id:9,name:'ML Foundations',dur:'3–4 months',
+   goal:"Understand machine learning from first principles. You can't build trustworthy AI systems without knowing what's happening inside the models.",
+   skills:['Gradient descent & backprop','Loss functions & optimizers','Evaluation metrics (P/R/F1)','Linear & logistic regression','Neural network architecture','NumPy vectorization','Bias-variance tradeoff'],
+   deliverables:['Neural network from scratch in NumPy','Custom training loop','Full metrics evaluation pipeline','Training dynamics visualization'],
+   resources:[
+     {name:'ML Specialization — Andrew Ng',tag:'Coursera',url:'https://www.coursera.org/specializations/machine-learning-introduction'},
+     {name:'Andrej Karpathy — Neural nets from scratch',tag:'YouTube',url:'https://www.youtube.com/@AndrejKarpathy'},
+   ]},
+  {id:10,name:'Transformers & Embeddings',dur:'1.5–2 months',
+   goal:'Understand transformer architecture and how embeddings encode meaning. These are the primitives everything in LLM engineering is built on.',
+   skills:['Attention mechanism & self-attention','Tokenization strategies','Embedding generation','Chunking strategies','Document parsing','Semantic similarity','Hugging Face ecosystem'],
+   deliverables:['Financial PDF parsing & embedding pipeline','Chunking strategy comparison','Structured extraction system','Embedding visualization'],
+   resources:[
+     {name:'NLP with Transformers — Tunstall et al.',tag:"O'Reilly book",url:'https://www.oreilly.com/library/view/natural-language-processing/9781098103231/'},
+     {name:'Hugging Face NLP Course',tag:'Free course',url:'https://huggingface.co/learn/nlp-course/chapter1/1'},
+   ]},
+  {id:11,name:'RAG Systems',dur:'2–3 months',
+   goal:'Build enterprise retrieval systems that ground LLMs in real data. RAG is the dominant pattern for knowledge-intensive enterprise AI.',
+   skills:['Hybrid retrieval (dense + sparse)','Re-ranking pipelines','Query expansion','Context window optimization','Citation generation','Retrieval evaluation','Hallucination reduction'],
+   deliverables:['Financial earnings-call RAG system','Hybrid retrieval pipeline','Retrieval evaluation suite','Citation mapping system'],
+   resources:[
+     {name:'RAG Techniques — Nir Diamant',tag:'GitHub',url:'https://github.com/NirDiamant/RAG_Techniques'},
+     {name:'DeepLearning.AI Short Courses',tag:'Free courses',url:'https://www.deeplearning.ai/short-courses/'},
+     {name:'LangChain Documentation',tag:'Official docs',url:'https://python.langchain.com/docs/introduction/'},
+   ]},
+  {id:12,name:'Vector Databases',dur:'1 month',
+   goal:'Understand semantic search infrastructure — how similarity search works at scale and how to build retrieval systems that stay fast as data grows.',
+   skills:['HNSW index structure','Approximate nearest neighbour search','Metadata filtering','Vector indexing strategies','Distance metrics','Namespace & collection design'],
+   deliverables:['SEC filings vector search system','Performance benchmarks','Metadata filtering pipeline','Cross-DB comparison'],
+   resources:[
+     {name:'Qdrant Documentation',tag:'Official docs',url:'https://qdrant.tech/documentation/'},
+     {name:'pgvector Documentation',tag:'GitHub',url:'https://github.com/pgvector/pgvector'},
+     {name:'Pinecone Learn',tag:'Official docs',url:'https://www.pinecone.io/learn/'},
+   ]},
+  {id:13,name:'AI Eval & Observability',dur:'1–1.5 months',
+   goal:"Make AI systems measurable and production-safe. You can't improve what you can't measure — evaluation is what separates demos from deployed systems.",
+   skills:['Evaluation pipeline design','Faithfulness & relevance scoring','Tracing & span logging','Regression testing for AI','Monitoring dashboards','LLM output quality metrics'],
+   deliverables:['End-to-end evaluation pipeline','Langfuse tracing integration','Regression test suite','Quality monitoring dashboard'],
+   resources:[
+     {name:'DeepEval — Confident AI',tag:'GitHub',url:'https://github.com/confident-ai/deepeval'},
+     {name:'RAGAS — RAG evaluation',tag:'GitHub',url:'https://github.com/explodinggradients/ragas'},
+     {name:'Langfuse — LLM observability',tag:'Tool',url:'https://langfuse.com/'},
+   ]},
+  {id:14,name:'Agents & Orchestration',dur:'3–4 months',
+   goal:'Build stateful multi-agent systems that plan, execute, validate, and recover. This is the frontier of applied AI engineering.',
+   skills:['State machine design','Agent routing & planning','Tool orchestration','Validation & retry loops','Multi-agent communication','Human-in-the-loop patterns','Error recovery'],
+   deliverables:['Multi-agent financial research system','Planner agent','SQL query agent','Document retrieval agent','Validator & hallucination-check agent'],
+   resources:[
+     {name:'LangGraph Documentation',tag:'Official docs',url:'https://langchain-ai.github.io/langgraph/'},
+     {name:'Agentic RAG — FareedKhan-dev',tag:'GitHub',url:'https://github.com/FareedKhan-dev/agentic-rag'},
+   ]},
+  {id:15,name:'AWS & MLOps',dur:'2–3 months',
+   goal:'Deploy and operate AI systems in production. Knowing how to build is half the job — knowing how to ship and keep it running is the other half.',
+   skills:['AWS ECS & ECR','CI/CD with GitHub Actions','Container orchestration','CloudWatch monitoring','Log aggregation','Blue/green deployments','Infrastructure as code'],
+   deliverables:['Cloud-deployed AI system on ECS','GitHub Actions CI/CD pipeline','CloudWatch monitoring stack','Automated deployment workflow'],
+   resources:[
+     {name:'AWS Skill Builder',tag:'AWS official',url:'https://skillbuilder.aws/'},
+     {name:'MadeWithML — MLOps course',tag:'Free course',url:'https://madewithml.com/'},
+     {name:'GitHub Actions Documentation',tag:'Official docs',url:'https://docs.github.com/en/actions'},
+   ]},
+  {id:16,name:'System Design',dur:'1–2 months',
+   goal:"Develop enterprise architecture thinking. Senior AI engineers don't just write code — they design systems that scale, fail gracefully, and evolve.",
+   skills:['Scalability patterns','CAP theorem & consistency','Distributed systems tradeoffs','Latency optimization','Caching strategies','Message queues','Load balancing','DB sharding'],
+   deliverables:['Architecture diagrams for prior projects','System design case study notes','Scaling plan for capstone system'],
+   resources:[
+     {name:'ByteByteGo — System Design',tag:'Course + newsletter',url:'https://bytebytego.com/'},
+     {name:'System Design Primer — donnemartin',tag:'GitHub',url:'https://github.com/donnemartin/system-design-primer'},
+     {name:'Designing Data-Intensive Applications',tag:"O'Reilly book",url:'https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/'},
+   ]},
+  {id:17,name:'Capstone Projects',dur:'3–4 months',
+   goal:"Build hiring-grade portfolio systems that demonstrate everything you've learned. The flagship project should be something you'd be proud to demo in any interview.",
+   skills:['End-to-end system integration','Production-grade code quality','Technical documentation','Demo preparation','Architecture decision records','CI/CD for AI systems'],
+   deliverables:['Systemic Financial Intelligence Copilot (flagship)','Production GitHub repo','Architecture documentation','Demo video','Technical writeup / blog post','Full test coverage & CI/CD'],
+   resources:[
+     {name:'FinGPT — AI4Finance Foundation',tag:'GitHub reference',url:'https://github.com/AI4Finance-Foundation/FinGPT'},
+     {name:'Agentic FinSearch — YangletLiu',tag:'GitHub reference',url:'https://github.com/YangletLiu/FinGPT-Search-Agent'},
+     {name:'Financial Agentic RAG — DeepakSilaych',tag:'GitHub reference',url:'https://github.com/DeepakSilaych/Financial_Agentic_RAG'},
+   ]},
+  {id:18,name:'DSA & Interview Prep',dur:'Parallel (throughout)',
+   goal:'Prepare for technical screening rounds. Run this in parallel from Phase 2 onwards — 20–30 min of problems daily prevents the rusty-algorithm interview failure.',
+   skills:['Arrays & hashmaps','Trees & binary search','Graphs (BFS/DFS)','Dynamic programming','Sliding window','Two pointers','Topological sort','Heap / priority queue'],
+   deliverables:['NeetCode 75 completed','Pattern recognition notes','Timed practice routine','Mock interview sessions'],
+   resources:[
+     {name:'NeetCode Pro',tag:'Platform',url:'https://neetcode.io/pro'},
+     {name:'Codeintuition',tag:'Platform',url:'https://www.codeintuition.io/'},
+     {name:'LeetCode',tag:'Platform',url:'https://leetcode.com/'},
+   ]},
+  {id:19,name:'Resume & LinkedIn',dur:'Final 2–4 weeks',
+   goal:"Position yourself for enterprise AI engineering roles. A great resume is a precise artifact — every line should demonstrate scope, impact, and technical depth.",
+   skills:['AI/ML resume writing','Quantifying engineering impact','LinkedIn optimization','GitHub profile curation','Portfolio presentation','Technical storytelling'],
+   deliverables:['AI-focused resume (ATS-optimized)','Optimized LinkedIn profile','Polished GitHub profile','Portfolio showcase page'],
+   resources:[
+     {name:'The Tech Resume Inside Out',tag:'Book',url:'https://thetechresume.com/'},
+     {name:'The Pragmatic Engineer — Gergely Orosz',tag:'Newsletter',url:'https://www.pragmaticengineer.com/'},
+   ]},
+];
+
+const SCLS=['not-started','in-progress','complete'];
+const SLBL=['Not started','In progress','Complete'];
+const DAYS=['M','T','W','T','F','S','S'];
+const DAYNAMES=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const CIRC=2*Math.PI*42;
+const todayI=(new Date().getDay()+6)%7;
+
+function loadState(){
+  try{const r=localStorage.getItem('ai-roadmap-v2');if(r)return JSON.parse(r);}catch(e){}
+  return{phases:Array(19).fill(0),notes:Array(19).fill(''),py:Array(7).fill(false),sql:Array(7).fill(false),hrs:0};
+}
+function saveState(){localStorage.setItem('ai-roadmap-v2',JSON.stringify(st));}
+const st=loadState();
+
+function renderPhases(){
+  document.getElementById('phases-grid').innerHTML=PHASES.map((p,i)=>{
+    const s=st.phases[i];
+    const note=(st.notes[i]||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const skills=p.skills.map(sk=>`<span class="skill-chip">${sk}</span>`).join('');
+    const dels=p.deliverables.map(d=>`<div class="del-item">${d}</div>`).join('');
+    const res=p.resources.map(r=>`<a class="res-link" href="${r.url}" target="_blank" rel="noopener"><span class="res-link-name">${r.name}</span><span class="res-link-tag">${r.tag}</span></a>`).join('');
+    return`<div class="phase-card ${SCLS[s]}" id="pc-${i}">
+      <div class="phase-head" onclick="toggleOpen(${i})">
+        <div class="phase-left">
+          <div class="phase-num">Phase ${String(p.id).padStart(2,'0')}</div>
+          <div class="phase-name">${p.name}</div>
+          <div class="phase-dur">${p.dur}</div>
+        </div>
+        <div class="phase-right">
+          <span class="phase-badge" onclick="event.stopPropagation();cycleStatus(${i})">${SLBL[s]}</span>
+          <span class="chevron">▾</span>
+        </div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">${p.goal}</div>
+        <div class="detail-block"><div class="detail-label">Skills you'll build</div><div class="skills-wrap">${skills}</div></div>
+        <div class="detail-block"><div class="detail-label">Deliverables</div><div class="deliverables">${dels}</div></div>
+        <div class="detail-block"><div class="detail-label">Resources</div><div class="res-links">${res}</div></div>
+        <textarea class="phase-notes" placeholder="Notes, links, start date…" oninput="saveNote(${i},this.value)">${note}</textarea>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleOpen(i){
+  const c=document.getElementById('pc-'+i);c.classList.toggle('open');
+}
+function cycleStatus(i){
+  st.phases[i]=(st.phases[i]+1)%3;saveState();updateStats();
+  const c=document.getElementById('pc-'+i);
+  const isOpen=c.classList.contains('open');
+  c.className='phase-card '+SCLS[st.phases[i]]+(isOpen?' open':'');
+  c.querySelector('.phase-badge').textContent=SLBL[st.phases[i]];
+}
+function saveNote(i,v){st.notes[i]=v;saveState();}
+
+function updateStats(){
+  const done=st.phases.filter(s=>s===2).length;
+  const prog=st.phases.filter(s=>s===1).length;
+  const pct=Math.round(done/19*100);
+  document.getElementById('s-done').textContent=done+' / 19';
+  document.getElementById('s-prog').textContent=prog;
+  document.getElementById('ring-pct').textContent=pct+'%';
+  document.getElementById('ring-fill').style.strokeDashoffset=CIRC*(1-done/19);
+}
+
+function chHrs(d){
+  st.hrs=Math.max(0,Math.min(40,Math.round((st.hrs+d)*2)/2));saveState();renderHours();
+}
+function renderHours(){
+  const v=st.hrs%1===0?st.hrs:st.hrs.toFixed(1);
+  document.getElementById('hrs-num').textContent=v+'h';
+  document.getElementById('s-hrs').textContent=v+'h';
+  const rem=Math.max(0,9-st.hrs);
+  document.getElementById('hrs-bar').style.width=Math.min(100,Math.round(st.hrs/11*100))+'%';
+  document.getElementById('hrs-sub').textContent=rem>0?`Target 9–11h · ${rem.toFixed(1).replace('.0','')}h remaining`:'Target 9–11h · On track!';
+}
+
+function renderDots(){
+  ['py','sql'].forEach(type=>{
+    const arr=type==='py'?st.py:st.sql;
+    document.getElementById(type+'-dots').innerHTML=DAYS.map((d,i)=>{
+      let cls='dot';if(arr[i])cls+=' done';else if(i===todayI)cls+=' today';
+      return`<div class="${cls}" onclick="toggleDot('${type}',${i})" title="${DAYNAMES[i]}">${arr[i]?'✓':d}</div>`;
+    }).join('');
+  });
+}
+function toggleDot(type,idx){
+  if(type==='py')st.py[idx]=!st.py[idx];else st.sql[idx]=!st.sql[idx];
+  saveState();renderDots();
+}
+function confirmReset(){
+  if(confirm('Reset all progress, notes, and tracking data?')){localStorage.removeItem('ai-roadmap-v2');location.reload();}
+}
+
+renderPhases();updateStats();renderDots();renderHours();
+</script>
+</body>
+</html>
